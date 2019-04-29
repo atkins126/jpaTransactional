@@ -1,0 +1,17 @@
+#配置数据源
+spring:
+  datasource:
+    username: root
+    password: root
+    #h2siml 数据库必须事先在 Mysql 数据库中创建好，上面的 Mysql 账号密码也必须正确
+    #mysql驱动8.0.5时，指定时区 serverTimezone. 同时 driver-class-name 也变成如下的新地址，不再是以前的 com.mysql.hdbc.Driver
+    url: jdbc:mysql://localhost:3306/h2siml?characterEncoding=UTF-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#JPA配置
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    #指定 JPA 底层的 hibernate方言，使用 InnoDB 作为存储引擎。否则默认 JPA 使用的是 MyISAM 存储引擎，此引擎不支持事务、不支持外键的
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
